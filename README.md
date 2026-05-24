@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Plume RSS Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, privacy-first RSS and Atom feed reader browser extension for Chrome, Edge, and Firefox.
 
-Currently, two official plugins are available:
+![Plume RSS Reader](public/icons/promo-1400x560.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Subscribe to any RSS or Atom feed by URL or site name
+- Smart feed discovery — paste any website and Plume finds the feed automatically
+- Search for feeds by name with built-in Feedly-powered suggestions
+- Clean three-column layout: feeds · article list · reader
+- Load full article content from the source website with one click
+- Dark and light theme
+- Keyboard navigation: `j/k` navigate, `m` mark read, `o` open original
+- Save articles for later
+- Automatic background sync every 30 minutes
+- Explore mode — discover sources like BBC, The Guardian, TechCrunch, and more
+- No account required, no tracking, no ads
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Privacy
 
-## Expanding the ESLint configuration
+All data is stored locally in your browser. Nothing is sent to any external server except the feed URLs you subscribe to. See [PRIVACY.md](PRIVACY.md) for details.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Microsoft Edge Add-ons:** *(coming soon)*
+- **Firefox Add-ons:** *(coming soon)*
+- **Chrome Web Store:** *(coming soon)*
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev        # dev server at localhost:5173/app.html
+npm run build      # production build → dist/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Or double-click `build.cmd` on Windows.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Load unpacked in Edge / Chrome
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Run `npm run build`
+2. Go to `edge://extensions/` or `chrome://extensions/`
+3. Enable Developer mode
+4. Click "Load unpacked" and select the `dist/` folder
+
+### Load in Firefox
+
+1. Run `npm run build`
+2. Go to `about:debugging#/runtime/this-firefox`
+3. Click "Load Temporary Add-on" and select `dist/manifest.json`
+
+## Tech stack
+
+- React 19 + TypeScript + Vite
+- Dexie.js (IndexedDB)
+- fast-xml-parser (RSS/Atom parsing)
+- @mozilla/readability (full article extraction)
+- webextension-polyfill (MV3 cross-browser)
+
+## License
+
+MIT
