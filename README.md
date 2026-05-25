@@ -1,4 +1,4 @@
-# Plume RSS Reader
+# Plume RSS Reader ![Downloads](https://img.shields.io/github/downloads/IstvanSafar/plume-extension/total)
 
 A clean, privacy-first RSS and Atom feed reader browser extension for Chrome, Edge, and Firefox.
 
