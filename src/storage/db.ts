@@ -65,6 +65,7 @@ export async function markArticleRead(articleId: string): Promise<void> {
 
 export async function markAllReadInFeed(feedId: string): Promise<void> {
   await db.articles.where('feedId').equals(feedId).modify({ isRead: true })
+  await updateFeedUnreadCount(feedId)
 }
 
 export async function markAllReadGlobal(): Promise<void> {

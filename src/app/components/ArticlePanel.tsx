@@ -103,6 +103,7 @@ export function ArticlePanel({ filter, label, selectedId, unreadOnly, onOpenArti
   async function handleMarkAllRead() {
     if (filter.type === 'feed') {
       await markAllReadInFeed(filter.feedId)
+      setSnapshot(prev => prev.map(a => ({ ...a, isRead: true })))
       await reload()
       onUnreadChanged?.()
     }
